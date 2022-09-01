@@ -1,1 +1,14 @@
 <h1>{{title}}</h1>
+<script>
+    console.log('hola')
+    // Don't forget to replace this <Client_URL_From_Portal> with the value fetched from the portal
+    let ws = new WebSocket("wss://xherpubsubtest.webpubsub.azure.com/client/hubs/Hub?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ3c3M6Ly94aGVycHVic3VidGVzdC53ZWJwdWJzdWIuYXp1cmUuY29tL2NsaWVudC9odWJzL0h1YiIsImlhdCI6MTY2MjAzNzY3OCwiZXhwIjoxNjYyMDQxMjc4LCJyb2xlIjpbIndlYnB1YnN1Yi5qb2luTGVhdmVHcm91cCJdLCJzdWIiOiJjYXJsb3MifQ.FgkVri3fFIsq_KTwOkj-nBedZbc8MNIivykcegEiXK0");
+    ws.onopen = () => {
+        // Do things when the WebSocket connection is established
+        console.log('Me conecte')
+    };
+
+    ws.onmessage = event => {
+        // Do things when messages are received.
+    };
+</script>
