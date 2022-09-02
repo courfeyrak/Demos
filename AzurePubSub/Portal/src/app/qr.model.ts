@@ -4,4 +4,5 @@ export interface Qr{
     Qrimage: string;
     tipo: string;
     hora: string;
+    qrurl: string
 }

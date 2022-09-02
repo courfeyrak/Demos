@@ -22,8 +22,8 @@ export class AppComponent implements OnInit {
 
     var x= this.getqrs().subscribe(posts => {
       console.log(posts);
-      console.log(posts.Qrimage);
-      this.imagesrc = posts.Qrimage;
+      console.log(posts.qrurl);
+      this.imagesrc = posts.qrurl;
     });
     console.log('pase  ');
     ws.onopen = () => {
@@ -36,8 +36,8 @@ export class AppComponent implements OnInit {
         console.log('Data received -> ' + event.data);
         this.getqrs().subscribe(posts => {
           console.log(posts);
-          console.log(posts.Qrimage);
-          this.imagesrc = posts.Qrimage;
+          console.log(posts.qrurl);
+          this.imagesrc = posts.qrurl;
         });
     };
   }
