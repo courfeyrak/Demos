@@ -1,4 +1,5 @@
 import { Controller,Get } from '@nestjs/common';
+import { normalize } from 'path';
 import { AppService } from '../app.service';
 import { campaignqrrequest } from './dto/base-qr.dto';
 var tipo=1;
@@ -8,10 +9,13 @@ export class CampaignController {
 
   @Get()
   getHello(): campaignqrrequest {
+    var hora =new Date().toLocaleString();
+    console.log('hora -> '+hora)
     var resultado={
         "idpetition": "WERUIJA",
         "Qrimage":"https://ecoverseresources.blob.core.windows.net/images/angular.gif",
-        "tipo":tipo
+        "tipo":tipo,
+        "hora":hora
     }
     if(tipo===1){
       console.log('Tipo 1');
