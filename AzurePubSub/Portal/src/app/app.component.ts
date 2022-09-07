@@ -12,23 +12,26 @@ import { JsonPipe } from '@angular/common';
 })
 export class AppComponent implements OnInit {
 
-  title='Portal'
+  title='Claim your NFT'
   imagesrc ='https://ecoverseresources.blob.core.windows.net/images/images.png'
+  qrdata='Starting';
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     console.log('hola');
-    let ws = new WebSocket("wss://xherpubsubtest.webpubsub.azure.com/client/hubs/Hub?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ3c3M6Ly94aGVycHVic3VidGVzdC53ZWJwdWJzdWIuYXp1cmUuY29tL2NsaWVudC9odWJzL0h1YiIsImlhdCI6MTY2MjA5Mjk1NiwiZXhwIjoxNjYyMTAzNzU2fQ.yZ0fO7fButEWq9ZrkJ_c4L1OYI5QFe0kT0tTbIPAdks");
+    let ws = new WebSocket("wss://xherpubsubtest.webpubsub.azure.com/client/hubs/Hub?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ3c3M6Ly94aGVycHVic3VidGVzdC53ZWJwdWJzdWIuYXp1cmUuY29tL2NsaWVudC9odWJzL0h1YiIsImlhdCI6MTY2MjQ3NjU1MywiZXhwIjoxNjYyNDkwOTUzfQ.3pu3U5plcOb15Bd_puKS3cTbbPdCxs2lO5A4l4WseCc");
 
-    var x= this.getqrs().subscribe(posts => {
-      console.log(posts);
-      console.log(posts.qrurl);
-      this.imagesrc = posts.qrurl;
-    });
+    
     console.log('pase  ');
     ws.onopen = () => {
         // Do things when the WebSocket connection is established
         console.log('Me conecte')
+        var x= this.getqrs().subscribe(posts => {
+          console.log(posts);
+          console.log(posts.qrurl);
+          this.imagesrc = posts.qrurl;
+          this.qrdata = posts.hora;
+        });
     };
 
     ws.onmessage = event => {
@@ -38,6 +41,7 @@ export class AppComponent implements OnInit {
           console.log(posts);
           console.log(posts.qrurl);
           this.imagesrc = posts.qrurl;
+          this.qrdata = posts.hora;
         });
     };
   }
